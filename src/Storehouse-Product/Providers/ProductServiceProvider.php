@@ -25,6 +25,9 @@ class ProductServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBindings();
+        if (! isset($this->app['security.router'])) {
+            $this->app->register('ResultSystems\SecurityRouter\Providers\SecurityRouterServiceProvider');
+        }
     }
 
     /**

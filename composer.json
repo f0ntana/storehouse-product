@@ -11,7 +11,6 @@
     "require": {
         "php": ">=5.5.9",
         "illuminate/contracts": "~5.1",
-        "illuminate/support": "~5.1",
         "illuminate/database": "~5.1",
         "artesaos/defender": "~0.3|dev-master",
         "resultsystems/laravel-security-router": "1.*|dev-master"
