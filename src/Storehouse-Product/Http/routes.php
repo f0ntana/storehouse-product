@@ -1,39 +1,48 @@
 <?php
 /** @var \Illuminate\Routing\Router $router */
-$router->get('/search', [
-    'as' => 'search',
-    'uses' => 'ProductController@search',
-]);
-$options=$security
-    ->setFixedSecurity(['uses' => 'ProductController@index', 'as'=>'index'])
-    ->getConfig('storehouse-product', 'create');
-$router->get('/', $options);
-$router->get('{product}', [
-    'any'=>true,
-    'as' => 'show',
-    'uses' => 'ProductController@show',
-])->where('product', '[0-9]+');
-$router->post('/', [
-    'any'=>true,
-    'as' => 'create',
-    'uses' => 'ProductController@create',
-]);
-$router->put('/{product}', [
-    'any'=>true,
-    'as' => 'edit',
-    'uses' => 'ProductController@update',
-])->where('product', '[0-9]+');
-$router->delete('/{product}', [
-    'as' => 'delete',
-    'uses' => 'ProductController@destroy',
-])->where('product', '[0-9]+');
+/** @security \ResultSystems\SecurityRouter\Services\ServiceRouter $service */
+$router->get('/search',
+     $security
+        ->getConfig('storehouse-product', 'search', 'ProductController'));
+
+$router->get('',
+    $security
+        ->getConfig('storehouse-product', 'create', 'ProductController'));
+
+$router->get('/{product}',
+    $security
+        ->getConfig('storehouse-product', 'show', 'ProductController'))->where('product', '[0-9]+');
+
+$router->post('',
+    $security
+        ->getConfig('storehouse-product', 'store', 'ProductController'));
+
+$router->put('/{product}',
+    $security
+        ->setFixedSecurity(['as' => 'edit', 'uses' => 'ProductController@update'])
+        ->getConfig('storehouse-product', 'update'))->where('product', '[0-9]+');
+
+$router->delete('/{product}',
+    $security
+        ->setFixedSecurity(['as' => 'delete', 'uses' => 'ProductController@destroy'])
+        ->getConfig('storehouse-product', 'delete'))->where('product', '[0-9]+');
+/**
+ * Storehouse Product API
+ */
+//namespace \ResultSystems\Storehouse\Product\Http\Controllers\API
+$router->group($security
+        ->setFixedSecurity(['prefix' => 'api', 'namespace'=>'API', 'a' => 'api.'])
+        ->getConfigPackage('storehouse-product.api'), function () use ($router, $security) {
+    require_once(__DIR__."/api_routes.php");
+
+});
 
 /**
- * Storehouse API
+ * Storehouse Product Category
  */
-$router->group(['prefix' => 'api'], function () use ($router) {
-
-    // Fetch all roles
-    //$router->get('roles', 'ResultSystems\ResultSystems\Storehouse\Controllers\API\RolesController@index');
-
+//namespace \ResultSystems\Storehouse\Product\Http\Controllers
+$router->group($security
+        ->setFixedSecurity(['prefix' => 'category', 'as' => 'category.'])
+        ->getConfigPackage('storehouse-product.category'), function () use ($router, $security) {
+    require_once(__DIR__."/category_routes.php");
 });

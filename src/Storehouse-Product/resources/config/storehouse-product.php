@@ -16,6 +16,8 @@ return [
      * Default layout extends
      */
     'layout'       => [
+    //        'view'    => 'app',
+    //        'section' => 'content',
             'view'    => 'storehouse-product::master',
             'section' => 'content',
     ],
@@ -27,7 +29,7 @@ return [
         'protected'  => true,
         'middleware' => ['auth'],
         'defender'   =>   [
-            'load'       =>  true,
+            'load'       =>  false,
             'middleware' =>  ['needsRoleOrPermission'], //Use needsPermission or needsRoles
             'can'        =>  [
                         'storehouse.product.create',
@@ -42,12 +44,12 @@ return [
         ],
         'create'     =>   [
             'protected'  =>  false,
-            'middleware' =>  [],
+            'middleware' =>  ['auth'],
             'defender'   =>   [
                 'load'       =>  true,
                 'middleware' =>  ['needsRoleOrPermission'], //Use needsPermission or needsRoles
                 'can'        =>  ['storehouse.product.create','storehouse.product.store'],
-                'any'        =>  false,
+                'any'        =>  true,
                 'is'         =>  null,
             ],
          ],
@@ -106,6 +108,107 @@ return [
                 'is'         =>  null,
             ],
          ],
+        'api'    =>   [
+            'protected'  => false,
+            'middleware' => ['auth'],
+            'defender'   =>   [
+                'load'       =>  false,
+                'middleware' =>  ['needsRoleOrPermission'], //Use needsPermission or needsRoles
+                'can'        =>  [
+                            'storehouse.product.create',
+                            'storehouse.product.store',
+                            'storehouse.product.search',
+                            'storehouse.product.show',
+                            'storehouse.product.update',
+                            'storehouse.product.destroy',
+                        ],
+                'any'        =>  true,
+                'is'         =>  null,
+            ],
+         ],
+        'category'     => [
+            'protected'  => true,
+            'middleware' => ['auth'],
+            'defender'   =>   [
+                'load'       =>  false,
+                'middleware' =>  ['needsRoleOrPermission'], //Use needsPermission or needsRoles
+                'can'        =>  [
+                            'storehouse.product.category.create',
+                            'storehouse.product.category.store',
+                            'storehouse.product.category.search',
+                            'storehouse.product.category.show',
+                            'storehouse.product.category.update',
+                            'storehouse.product.category.destroy',
+                        ],
+                'any'        =>  true,
+                'is'         =>  null,
+            ],
+            'create'     =>   [
+                'protected'  =>  false,
+                'middleware' =>  ['auth'],
+                'defender'   =>   [
+                    'load'       =>  true,
+                    'middleware' =>  ['needsRoleOrPermission'], //Use needsPermission or needsRoles
+                    'can'        =>  ['storehouse.product.category.create','storehouse.product.category.store'],
+                    'any'        =>  true,
+                    'is'         =>  null,
+                ],
+             ],
+            'store'      =>   [
+                'protected'  =>  false,
+                'middleware' =>  [],
+                'defender'   =>   [
+                    'load'       =>  true,
+                    'middleware' =>  ['needsRoleOrPermission'], //Use needsPermission or needsRoles
+                    'can'        =>  ['storehouse.product.category.store'],
+                    'any'        =>  false,
+                    'is'         =>  null,
+                ],
+            ],
+            'search'     =>   [
+                'protected'  =>  false,
+                'middleware' =>  [],
+                'defender'   =>   [
+                    'load'       =>  true,
+                    'middleware' =>  ['needsRoleOrPermission'], //Use needsPermission or needsRoles
+                    'can'        =>  ['storehouse.product.category.search'],
+                    'any'        =>  false,
+                    'is'         =>  null,
+                ],
+             ],
+            'show'       =>   [
+                'protected'  =>  false,
+                'middleware' =>  [],
+                'defender'   =>   [
+                    'load'       =>  true,
+                    'middleware' =>  ['needsRoleOrPermission'], //Use needsPermission or needsRoles
+                    'can'        =>  ['storehouse.product.category.show'],
+                    'any'        =>  false,
+                    'is'         =>  null,
+                ],
+            ],
+            'update'     =>   [
+                'protected'  =>  false,
+                'middleware' =>  [],
+                'defender'   =>   [
+                    'load'       =>  true,
+                    'middleware' =>  ['needsRoleOrPermission'], //Use needsPermission or needsRoles
+                    'can'        =>  ['storehouse.product.category.update'],
+                    'any'        =>  false,
+                    'is'         =>  null,
+                ],
+            ],
+            'destroy'    =>   [
+                'protected'  =>  false,
+                'middleware' =>  [],
+                'defender'   =>   [
+                    'load'       =>  true,
+                    'middleware' =>  ['needsRoleOrPermission'], //Use needsPermission or needsRoles
+                    'can'        =>  ['storehouse.product.category.destroy'],
+                    'any'        =>  false,
+                    'is'         =>  null,
+                ],
+             ],
+        ],
     ],
-
 ];

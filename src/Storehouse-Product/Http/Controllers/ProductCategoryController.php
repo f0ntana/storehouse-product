@@ -5,7 +5,7 @@ namespace ResultSystems\Storehouse\Product\Http\Controllers;
 use ResultSystems\Storehouse\Product\Http\Controllers\Controller;
 use Illuminate\Core\Http\Request;
 
-class ProductController extends Controller
+class ProductCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,10 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('storehouse-product::product.create');
+        return view('storehouse-product::category.create');
     }
     public function search()
     {
-        return view('storehouse-product::product.search');
+        return view('storehouse-product::category.search');
     }
 }
