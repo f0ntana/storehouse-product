@@ -8,6 +8,7 @@ return [
    "general"     => [
        "actions"     => [
            "add"    => "Adicionar",
+           "cancel" => "Cancelar",
            "delete" => "Excluir",
            "edit"   => "Editar",
            "search" => "Pesquisar",
@@ -27,35 +28,28 @@ return [
    ],
 
    "product" => [
-       "create" => [
-           "add"     => [
-               "action"  => "Cadastrar",
-               "heading" => "Cadastrar produto",
-               "label"   => "Nome do produto"
-           ],
-
-           "empty"   => "Não existem produto cadastrados.",
-           "heading" => "Adicionar produto"
-       ],
-       "edit" => [
-           "add"     => [
-               "action"  => "Edit",
-               "heading" => "Edit product",
-               "label"   => "Product name"
-           ],
-
-           "empty"   => "There are no registered product.",
-           "heading" => "Edit product"
-       ],
-       "search" => [
-           "add"     => [
-               "action"  => "Pesquisar",
-               "heading" => "Pesquisa de produtos",
-               "label"   => "Nome do produto"
-           ],
-
-           "empty"   => "Não existem produto cadastrados.",
-           "heading" => "Lista de produtos"
-       ],
+     "create"  => [
+         "empty"   => "Não existem produto cadastrados.",
+         "heading" => "Cadastrar produto",
+         "label"   => "Nome do produto",
+      ],
+     "edit"    => [
+         "empty"   => "There are no registered product.",
+         "heading" => "Edit product",
+         "label"   => "Product name",
+      ],
+     "help"  => [
+         "name"         => "* Obrigatório",
+         "description"  => "",
+      ],
+     "fields"  => [
+         "name"         => "Nome",
+         "description"  => "Descrição",
+      ],
+     "search"  => [
+         "empty"   => "Não existem produto cadastrados.",
+         "heading" => "Pesquisa de produtos",
+         "label"   => "Nome do produto",
+      ],
    ],
 ];
