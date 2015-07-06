@@ -40,7 +40,6 @@ return [
       ],
      "help"  => [
          "name"         => "* Obrigatório",
-         "description"  => "",
       ],
      "fields"  => [
          "name"         => "Nome",
